@@ -1,0 +1,1139 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BY ILMI - Finance</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #070b16;
+  --card: #111a2b;
+  --cyan: #00eaff;
+  --green: #00ff9d;
+  --red: #ff5277;
+  --purple: #a855f7;
+  --text: #edf6ff;
+  --muted: #8da3bd;
+}
+
+body {
+  background:
+    radial-gradient(circle at top left, #142b46, transparent 45%),
+    var(--bg);
+  color: var(--text);
+  font-family: Arial, sans-serif;
+  padding: 15px;
+}
+
+.container {
+  max-width: 1000px;
+  margin: auto;
+}
+
+header {
+  text-align: center;
+  padding: 25px 10px;
+}
+
+.logo {
+  font-size: 30px;
+  font-weight: 900;
+  color: var(--cyan);
+  text-shadow: 0 0 20px #00eaff70;
+}
+
+header p {
+  color: var(--muted);
+  margin-top: 8px;
+}
+
+/* JAM REAL TIME */
+
+.clock {
+  margin: 20px 0;
+  padding: 22px;
+  text-align: center;
+  background: linear-gradient(135deg, #071727, #10102b);
+  border: 1px solid var(--cyan);
+  border-radius: 18px;
+  box-shadow: 0 0 20px #00eaff30;
+}
+
+#realTime {
+  font-size: clamp(32px, 8vw, 50px);
+  font-weight: 900;
+  color: var(--cyan);
+  text-shadow: 0 0 20px #00eaff80;
+  letter-spacing: 3px;
+}
+
+#realDate {
+  margin-top: 10px;
+}
+
+#realDay {
+  color: var(--green);
+  margin-top: 7px;
+  font-size: 13px;
+}
+
+/* CARD */
+
+.card {
+  background: linear-gradient(145deg, #111b2d, #0b1220);
+  border: 1px solid #24344c;
+  border-radius: 18px;
+  padding: 18px;
+  margin-bottom: 18px;
+  box-shadow: 0 0 20px #0003;
+}
+
+h2 {
+  font-size: 17px;
+  color: var(--cyan);
+  margin-bottom: 15px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.wallet {
+  padding: 15px;
+  background: #101b2b;
+  border: 1px solid #273d59;
+  border-radius: 14px;
+  transition: 0.3s;
+}
+
+.wallet:hover {
+  border-color: var(--cyan);
+  transform: translateY(-3px);
+}
+
+.wallet small {
+  color: var(--muted);
+}
+
+.wallet h3 {
+  margin-top: 8px;
+  color: var(--green);
+  overflow-wrap: anywhere;
+}
+
+.total {
+  font-size: 28px;
+  font-weight: bold;
+  color: var(--green);
+  overflow-wrap: anywhere;
+}
+
+label {
+  display: block;
+  font-size: 13px;
+  color: #a9bdd5;
+  margin-bottom: 6px;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #293c56;
+  background: #080f1c;
+  color: white;
+  margin-bottom: 13px;
+  outline: none;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--cyan);
+}
+
+button {
+  border: none;
+  border-radius: 10px;
+  padding: 12px 15px;
+  margin: 3px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  filter: brightness(1.2);
+}
+
+.primary {
+  background: var(--cyan);
+  color: #00111b;
+}
+
+.green {
+  background: var(--green);
+  color: #002015;
+}
+
+.red {
+  background: var(--red);
+  color: white;
+}
+
+.purple {
+  background: var(--purple);
+  color: white;
+}
+
+.secondary {
+  background: #26364c;
+  color: white;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.income {
+  color: var(--green);
+}
+
+.expense {
+  color: var(--red);
+}
+
+.transfer {
+  color: var(--cyan);
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.transaction {
+  padding: 14px;
+  background: #0c1523;
+  border: 1px solid #24344c;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  overflow-wrap: anywhere;
+}
+
+.transaction h3 {
+  margin: 8px 0;
+}
+
+.transaction img {
+  width: 100%;
+  max-height: 230px;
+  object-fit: contain;
+  border-radius: 10px;
+  margin-top: 10px;
+  background: #060b13;
+}
+
+.empty {
+  text-align: center;
+  color: var(--muted);
+  padding: 20px;
+}
+
+footer {
+  text-align: center;
+  color: var(--muted);
+  padding: 25px;
+  font-size: 12px;
+}
+
+@media (min-width: 700px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .formgrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+}
+
+/* PDF */
+
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+    padding: 0;
+  }
+
+  .no-print,
+  footer {
+    display: none !important;
+  }
+
+  .card,
+  .wallet,
+  .transaction,
+  .clock {
+    background: white !important;
+    color: black !important;
+    border: 1px solid #ccc !important;
+    box-shadow: none !important;
+    break-inside: avoid;
+  }
+
+  .logo,
+  h2,
+  .total,
+  .wallet h3,
+  #realTime,
+  #realDay,
+  .muted,
+  small {
+    color: black !important;
+    text-shadow: none !important;
+  }
+
+  .transaction img {
+    max-width: 180px;
+    max-height: 150px;
+  }
+
+  button {
+    display: none !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+  <div class="logo">⚡ BY ILMI</div>
+  <p>DAILY FINANCE MANAGEMENT</p>
+
+  <div class="clock">
+    <div id="realTime">00:00:00</div>
+    <div id="realDate">Memuat tanggal...</div>
+    <div id="realDay">MEMUAT HARI...</div>
+  </div>
+</header>
+
+<section class="card">
+  <h2>💎 TOTAL SALDO</h2>
+  <div class="total" id="totalSaldo">Rp0</div>
+  <p class="muted">Total seluruh dompet</p>
+</section>
+
+<section class="card">
+  <h2>💳 DOMPET DIGITAL</h2>
+
+  <div class="grid">
+    <div class="wallet">
+      <small>💵 CASH</small>
+      <h3 id="cash">Rp0</h3>
+    </div>
+
+    <div class="wallet">
+      <small>🔵 DANA</small>
+      <h3 id="dana">Rp0</h3>
+    </div>
+
+    <div class="wallet">
+      <small>🟣 OVO</small>
+      <h3 id="ovo">Rp0</h3>
+    </div>
+
+    <div class="wallet">
+      <small>🟠 SHOPEEPAY</small>
+      <h3 id="shopeepay">Rp0</h3>
+    </div>
+
+    <div class="wallet">
+      <small>🟢 GOPAY</small>
+      <h3 id="gopay">Rp0</h3>
+    </div>
+  </div>
+</section>
+
+<section class="card no-print">
+  <h2>📝 CATAT TRANSAKSI</h2>
+
+  <form id="form">
+
+    <label>Jenis Transaksi</label>
+    <select id="jenis">
+      <option value="income">Pemasukan</option>
+      <option value="expense">Pengeluaran</option>
+      <option value="transfer">Transfer</option>
+    </select>
+
+    <div class="formgrid">
+
+      <div>
+        <label>Nominal</label>
+        <input type="number" id="nominal"
+          min="1" step="1"
+          placeholder="Nominal rupiah" required>
+      </div>
+
+      <div>
+        <label>Dompet</label>
+        <select id="dompet">
+          <option value="cash">Cash</option>
+          <option value="dana">DANA</option>
+          <option value="ovo">OVO</option>
+          <option value="shopeepay">ShopeePay</option>
+          <option value="gopay">GoPay</option>
+        </select>
+      </div>
+
+      <div id="tujuanBox" style="display:none">
+        <label>Transfer ke</label>
+        <select id="tujuan">
+          <option value="cash">Cash</option>
+          <option value="dana">DANA</option>
+          <option value="ovo">OVO</option>
+          <option value="shopeepay">ShopeePay</option>
+          <option value="gopay">GoPay</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Tanggal Transaksi</label>
+        <input type="date" id="tanggal" required>
+      </div>
+
+      <div>
+        <label>Jam Transaksi</label>
+        <input type="time" id="jam" required>
+      </div>
+
+    </div>
+
+    <label>Kategori</label>
+    <select id="kategori">
+      <option>Umum</option>
+      <option>Makanan</option>
+      <option>Transportasi</option>
+      <option>Belanja</option>
+      <option>Gaji</option>
+      <option>Usaha</option>
+      <option>Tagihan</option>
+      <option>Tabungan</option>
+      <option>Lainnya</option>
+    </select>
+
+    <label>Keterangan</label>
+    <textarea id="keterangan"
+      rows="3"
+      placeholder="Keterangan transaksi"></textarea>
+
+    <label>📸 Foto Bukti</label>
+    <input type="file" id="foto" accept="image/*"
+      capture="environment">
+
+    <div id="preview"></div>
+
+    <button type="submit" class="primary">
+      💾 SIMPAN TRANSAKSI
+    </button>
+
+    <button type="button" class="secondary"
+      onclick="resetForm()">
+      RESET
+    </button>
+
+  </form>
+</section>
+
+<section class="card no-print">
+  <h2>🔎 FILTER TRANSAKSI</h2>
+
+  <label>Cari</label>
+  <input type="search" id="search"
+    placeholder="Cari transaksi...">
+
+  <label>Bulan</label>
+  <input type="month" id="bulan">
+
+  <label>Jenis</label>
+  <select id="filterJenis">
+    <option value="all">Semua</option>
+    <option value="income">Pemasukan</option>
+    <option value="expense">Pengeluaran</option>
+    <option value="transfer">Transfer</option>
+  </select>
+
+  <div class="actions">
+    <button class="green" onclick="exportPDF()">
+      📄 EXPORT PDF
+    </button>
+
+    <button class="purple" onclick="exportCSV()">
+      📊 EXPORT CSV
+    </button>
+
+    <button class="secondary" onclick="backup()">
+      💾 BACKUP
+    </button>
+
+    <button class="secondary"
+      onclick="document.getElementById('restore').click()">
+      📥 RESTORE
+    </button>
+
+    <input type="file" id="restore"
+      accept=".json,application/json" hidden>
+  </div>
+</section>
+
+<section class="card">
+  <h2>📈 LAPORAN BULANAN</h2>
+
+  <p>Pemasukan</p>
+  <h3 class="income" id="masuk">Rp0</h3>
+
+  <br>
+
+  <p>Pengeluaran</p>
+  <h3 class="expense" id="keluar">Rp0</h3>
+
+  <br>
+
+  <p>Transfer</p>
+  <h3 class="transfer" id="transfer">Rp0</h3>
+
+  <br>
+
+  <p>Jumlah transaksi</p>
+  <h3 id="jumlah">0</h3>
+</section>
+
+<section class="card">
+  <h2>📚 RIWAYAT TRANSAKSI</h2>
+  <div id="riwayat"></div>
+</section>
+
+<footer>
+  BY ILMI • FINANCE SYSTEM
+  <br>
+  Data tersimpan di perangkat
+</footer>
+
+</div>
+
+<script>
+const WALLET = {
+  cash: "Cash",
+  dana: "DANA",
+  ovo: "OVO",
+  shopeepay: "ShopeePay",
+  gopay: "GoPay"
+};
+
+const $ = id => document.getElementById(id);
+
+let data = [];
+let fotoData = "";
+let editID = null;
+
+/* WAKTU REAL-TIME WITA */
+
+function updateClock() {
+  const now = new Date();
+
+  const options = {
+    timeZone: "Asia/Makassar"
+  };
+
+  $("realTime").textContent =
+    now.toLocaleTimeString("id-ID", {
+      ...options,
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: false
+    });
+
+  $("realDate").textContent =
+    now.toLocaleDateString("id-ID", {
+      ...options,
+      day: "2-digit",
+      month: "long",
+      year: "numeric"
+    });
+
+  $("realDay").textContent =
+    now.toLocaleDateString("id-ID", {
+      ...options,
+      weekday: "long"
+    }).toUpperCase();
+}
+
+setInterval(updateClock, 1000);
+updateClock();
+
+/* TANGGAL OTOMATIS WITA */
+
+function waktuWITA() {
+  const parts = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Asia/Makassar",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit"
+  }).formatToParts(new Date());
+
+  const get = type =>
+    parts.find(p => p.type === type)?.value;
+
+  const tanggal =
+    get("year") + "-" + get("month") + "-" + get("day");
+
+  const jam = new Date().toLocaleTimeString("en-GB", {
+    timeZone: "Asia/Makassar",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false
+  });
+
+  return { tanggal, jam };
+}
+
+function setTanggal() {
+  const waktu = waktuWITA();
+
+  $("tanggal").value = waktu.tanggal;
+  $("jam").value = waktu.jam;
+}
+
+/* FORMAT RUPIAH */
+
+function rupiah(n) {
+  return new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
+    maximumFractionDigits: 0
+  }).format(n);
+}
+
+/* SIMPAN */
+
+function save() {
+  try {
+    localStorage.setItem(
+      "byIlmiFinance",
+      JSON.stringify(data)
+    );
+  } catch(e) {
+    alert("Penyimpanan penuh. Hapus foto besar atau backup data.");
+  }
+}
+
+/* MUAT DATA */
+
+function load() {
+  try {
+    data = JSON.parse(
+      localStorage.getItem("byIlmiFinance") || "[]"
+    );
+
+    if (!Array.isArray(data)) data = [];
+  } catch(e) {
+    data = [];
+  }
+}
+
+/* SALDO */
+
+function saldo(wallet) {
+  let total = 0;
+
+  data.forEach(t => {
+    if (t.wallet === wallet) {
+      if (t.type === "income") total += t.amount;
+      if (t.type === "expense") total -= t.amount;
+      if (t.type === "transfer") total -= t.amount;
+    }
+
+    if (t.type === "transfer" && t.to === wallet) {
+      total += t.amount;
+    }
+  });
+
+  return total;
+}
+
+/* DASHBOARD */
+
+function dashboard() {
+  let total = 0;
+
+  Object.keys(WALLET).forEach(w => {
+    const s = saldo(w);
+
+    $(w).textContent = rupiah(s);
+    total += s;
+  });
+
+  $("totalSaldo").textContent = rupiah(total);
+
+  const bulan = $("bulan").value;
+
+  const list = data.filter(t =>
+    !bulan || t.date.startsWith(bulan)
+  );
+
+  let masuk = 0;
+  let keluar = 0;
+  let transfer = 0;
+
+  list.forEach(t => {
+    if (t.type === "income") masuk += t.amount;
+    if (t.type === "expense") keluar += t.amount;
+    if (t.type === "transfer") transfer += t.amount;
+  });
+
+  $("masuk").textContent = rupiah(masuk);
+  $("keluar").textContent = rupiah(keluar);
+  $("transfer").textContent = rupiah(transfer);
+  $("jumlah").textContent = list.length;
+}
+
+/* TRANSFER */
+
+$("jenis").addEventListener("change", () => {
+  $("tujuanBox").style.display =
+    $("jenis").value === "transfer" ? "block" : "none";
+});
+
+/* FOTO */
+
+$("foto").addEventListener("change", function() {
+  const file = this.files[0];
+
+  fotoData = "";
+  $("preview").innerHTML = "";
+
+  if (!file) return;
+
+  if (!file.type.startsWith("image/")) {
+    alert("Pilih gambar.");
+    this.value = "";
+    return;
+  }
+
+  if (file.size > 5 * 1024 * 1024) {
+    alert("Foto maksimal 5 MB.");
+    this.value = "";
+    return;
+  }
+
+  const reader = new FileReader();
+
+  reader.onload = e => {
+    const img = new Image();
+
+    img.onload = () => {
+      const canvas = document.createElement("canvas");
+
+      const scale = Math.min(
+        1,
+        900 / Math.max(img.width, img.height)
+      );
+
+      canvas.width = Math.round(img.width * scale);
+      canvas.height = Math.round(img.height * scale);
+
+      canvas.getContext("2d").drawImage(
+        img, 0, 0, canvas.width, canvas.height
+      );
+
+      fotoData = canvas.toDataURL("image/jpeg", 0.75);
+
+      $("preview").innerHTML =
+        '<img style="width:100%;max-height:200px;object-fit:contain" src="' +
+        fotoData + '">';
+    };
+
+    img.src = e.target.result;
+  };
+
+  reader.readAsDataURL(file);
+});
+
+/* TAMBAH TRANSAKSI */
+
+$("form").addEventListener("submit", e => {
+  e.preventDefault();
+
+  const type = $("jenis").value;
+  const wallet = $("dompet").value;
+  const to = $("tujuan").value;
+  const amount = Number($("nominal").value);
+
+  if (!Number.isFinite(amount) || amount <= 0) {
+    alert("Nominal tidak valid.");
+    return;
+  }
+
+  if (type === "transfer" && wallet === to) {
+    alert("Dompet asal dan tujuan harus berbeda.");
+    return;
+  }
+
+  const transaksi = {
+    id: editID || (
+      Date.now().toString() +
+      Math.random().toString(36).slice(2)
+    ),
+    type,
+    wallet,
+    to: type === "transfer" ? to : "",
+    amount,
+    date: $("tanggal").value,
+    time: $("jam").value,
+    category: $("kategori").value,
+    note: $("keterangan").value.trim(),
+    photo: fotoData
+  };
+
+  if (!transaksi.date || !transaksi.time) {
+    alert("Tanggal dan jam harus diisi.");
+    return;
+  }
+
+  if (editID) {
+    const i = data.findIndex(t => t.id === editID);
+
+    if (i !== -1) data[i] = transaksi;
+  } else {
+    data.push(transaksi);
+  }
+
+  save();
+  resetForm();
+  render();
+});
+
+/* RESET */
+
+function resetForm() {
+  $("form").reset();
+
+  editID = null;
+  fotoData = "";
+
+  $("preview").innerHTML = "";
+  $("tujuanBox").style.display = "none";
+
+  setTanggal();
+
+  $("form").querySelector('button[type="submit"]').textContent =
+    "💾 SIMPAN TRANSAKSI";
+}
+
+/* EDIT */
+
+function editTransaksi(id) {
+  const t = data.find(x => x.id === id);
+
+  if (!t) return;
+
+  editID = id;
+
+  $("jenis").value = t.type;
+  $("dompet").value = t.wallet;
+  $("tujuan").value = t.to || "dana";
+  $("nominal").value = t.amount;
+  $("tanggal").value = t.date;
+  $("jam").value = t.time;
+  $("kategori").value = t.category;
+  $("keterangan").value = t.note || "";
+
+  $("tujuanBox").style.display =
+    t.type === "transfer" ? "block" : "none";
+
+  fotoData = t.photo || "";
+
+  $("preview").innerHTML = fotoData
+    ? '<img style="width:100%;max-height:200px;object-fit:contain" src="' +
+      fotoData + '">'
+    : "";
+
+  $("form").querySelector('button[type="submit"]').textContent =
+    "🔄 UPDATE TRANSAKSI";
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+/* HAPUS */
+
+function hapusTransaksi(id) {
+  if (!confirm("Hapus transaksi ini?")) return;
+
+  data = data.filter(t => t.id !== id);
+
+  save();
+  render();
+}
+
+/* ESCAPE HTML */
+
+function safe(v) {
+  return String(v ?? "").replace(/[&<>"']/g, c => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  }[c]));
+}
+
+/* RIWAYAT */
+
+function render() {
+  dashboard();
+
+  const keyword = $("search").value.toLowerCase();
+  const bulan = $("bulan").value;
+  const jenis = $("filterJenis").value;
+
+  const list = data
+    .filter(t => !bulan || t.date.startsWith(bulan))
+    .filter(t => jenis === "all" || t.type === jenis)
+    .filter(t =>
+      (t.note || "").toLowerCase().includes(keyword) ||
+      (t.category || "").toLowerCase().includes(keyword)
+    )
+    .sort((a,b) =>
+      (b.date + b.time).localeCompare(a.date + a.time)
+    );
+
+  if (!list.length) {
+    $("riwayat").innerHTML =
+      '<div class="empty">Belum ada transaksi.</div>';
+    return;
+  }
+
+  $("riwayat").innerHTML = list.map(t => {
+    const label = {
+      income: "PEMASUKAN",
+      expense: "PENGELUARAN",
+      transfer: "TRANSFER"
+    }[t.type];
+
+    const cls = t.type;
+
+    let amount = rupiah(t.amount);
+
+    if (t.type === "income") amount = "+ " + amount;
+    if (t.type === "expense") amount = "- " + amount;
+
+    return `
+      <div class="transaction">
+
+        <b class="${cls}">${label}</b>
+
+        <h3>${amount}</h3>
+
+        <p>${safe(t.note || "Tanpa keterangan")}</p>
+
+        <p class="muted">
+          ${safe(t.date)} • ${safe(t.time)} WITA
+        </p>
+
+        <p class="muted">${safe(t.category)}</p>
+
+        <p class="muted">
+          ${safe(WALLET[t.wallet])}
+          ${t.type === "transfer"
+            ? " → " + safe(WALLET[t.to])
+            : ""}
+        </p>
+
+        ${t.photo
+          ? `<img src="${t.photo}" alt="Foto bukti">`
+          : ""}
+
+        <div class="actions no-print">
+
+          <button class="primary"
+            onclick="editTransaksi('${t.id}')">
+            EDIT
+          </button>
+
+          <button class="red"
+            onclick="hapusTransaksi('${t.id}')">
+            HAPUS
+          </button>
+
+        </div>
+
+      </div>
+    `;
+  }).join("");
+}
+
+/* FILTER */
+
+$("search").addEventListener("input", render);
+$("bulan").addEventListener("change", render);
+$("filterJenis").addEventListener("change", render);
+
+/* EXPORT PDF */
+
+function exportPDF() {
+  if (!$("bulan").value) {
+    alert("Pilih bulan laporan terlebih dahulu.");
+    $("bulan").focus();
+    return;
+  }
+
+  const list = data.filter(t =>
+    t.date.startsWith($("bulan").value)
+  );
+
+  if (!list.length) {
+    alert("Tidak ada transaksi pada bulan tersebut.");
+    return;
+  }
+
+  const oldTitle = document.title;
+
+  document.title = "Laporan By Ilmi " + $("bulan").value;
+
+  render();
+  window.print();
+
+  document.title = oldTitle;
+}
+
+/* EXPORT CSV */
+
+function exportCSV() {
+  const bulan = $("bulan").value;
+
+  if (!bulan) {
+    alert("Pilih bulan terlebih dahulu.");
+    return;
+  }
+
+  const list = data.filter(t => t.date.startsWith(bulan));
+
+  const rows = [
+    ["Tanggal", "Jam", "Jenis", "Dompet", "Tujuan", "Kategori", "Keterangan", "Nominal"]
+  ];
+
+  list.forEach(t => {
+    rows.push([
+      t.date,
+      t.time,
+      t.type,
+      WALLET[t.wallet],
+      t.to ? WALLET[t.to] : "",
+      t.category,
+      t.note,
+      t.amount
+    ]);
+  });
+
+  const csv = rows.map(row =>
+    row.map(v =>
+      '"' + String(v ?? "").replace(/"/g, '""') + '"'
+    ).join(";")
+  ).join("\n");
+
+  download(
+    "\uFEFF" + csv,
+    "laporan-ilmi-" + bulan + ".csv",
+    "text/csv;charset=utf-8"
+  );
+}
+
+/* BACKUP */
+
+function backup() {
+  download(
+    JSON.stringify(data, null, 2),
+    "backup-keuangan-ilmi.json",
+    "application/json"
+  );
+}
+
+/* RESTORE */
+
+$("restore").addEventListener("change", function() {
+  const file = this.files[0];
+
+  if (!file) return;
+
+  const reader = new FileReader();
+
+  reader.onload = () => {
+    try {
+      const hasil = JSON.parse(reader.result);
+
+      if (!Array.isArray(hasil)) {
+        throw new Error("Format backup tidak valid.");
+      }
+
+      if (!confirm("Ganti data dengan backup ini?")) return;
+
+      data = hasil;
+
+      save();
+      render();
+
+      alert("Backup berhasil.");
+
+    } catch(e) {
+      alert("Backup gagal: " + e.message);
+    }
+  };
+
+  reader.readAsText(file);
+  this.value = "";
+});
+
+/* DOWNLOAD */
+
+function download(content, filename, type) {
+  const blob = new Blob([content], { type });
+
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+
+  a.href = url;
+  a.download = filename;
+
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+/* MULAI */
+
+load();
+setTanggal();
+render();
+
+</script>
+
+</body>
+</html>
